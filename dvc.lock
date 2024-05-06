@@ -1,0 +1,22 @@
+schema: '2.0'
+stages:
+  data_prepare:
+    cmd: python -m src.stages.data_prepare --config=params.yaml
+    deps:
+    - path: src/stages/data_prepare.py
+      hash: md5
+      md5: 189eb99d090df4fb9c5779e8314ca25e
+      size: 928
+    params:
+      params.yaml:
+        base:
+          random_state: 42
+          log_level: INFO
+        data_load:
+          dataset_csv: data/raw/dataset.csv
+          dataset_prepare: data/processed/prepare_dataset.csv
+    outs:
+    - path: data/processed/prepare_dataset.csv
+      hash: md5
+      md5: 3518e02af18217521d0d90a9e3ff7745
+      size: 13493

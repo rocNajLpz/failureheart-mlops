@@ -22,7 +22,6 @@ def data_load(config_path: Text) -> None:
 
     # drop NaNs
     df = df.dropna(axis=0, how='any')
-    df = df.drop('Unnamed: 0', axis=1)
 
     logger.info('Save processed data')
     df.to_csv(config['data_load']['dataset_prepare'], index=False)
