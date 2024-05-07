@@ -8,3 +8,79 @@ stages:
     - data_load
     outs:
     - data/processed/prepare_dataset.csv
+  featurize:
+    cmd: python -m src.stages.featurize --config=params.yaml
+    deps:
+    - data/processed/prepare_dataset.csv
+    - src/stages/featurize.py
+    params:
+    - base
+    - data_load
+    - featurize
+    outs:
+    - data/processed/featured_dataset.csv
+  data_split:
+    cmd: python -m src.stages.data_split --config=params.yaml
+    deps:
+    - data/processed/featured_dataset.csv
+    - src/stages/data_split.py
+    params:
+    - base
+    - data_load
+    - featurize
+    - data_split
+    outs:
+    - data/processed/test_dataset.csv
+    - data/processed/train_dataset.csv
+
+  train:
+    cmd: python -m src.stages.train --config=params.yaml
+    deps:
+    - data/processed/train_dataset.csv
+    - src/stages/train.py
+    outs:
+    - models/model.joblib
+    params:
+    - base
+    - data_split.trainset_path
+    - featurize.target_column
+    - train
+
+  evaluate:
+    cmd: python -m src.stages.evaluate --config=params.yaml
+    deps:
+    - data/processed/test_dataset.csv
+    - models/model.joblib
+    - src/stages/evaluate.py
+    params:
+    - base
+    - data_split.testset_path
+    - evaluate
+    - featurize.target_column
+    metrics:
+    - reports/metrics.json:
+        cache: false
+
+artifacts:
+  penguins_classifier:
+    path: models/model.joblib
+    type: model
+    desc: This is a penguins classifier.
+    labels:
+    - cv
+    - classification
+  penguins-demo-live:
+    path: models/model.joblib
+    type: model
+  heartfailure_classifier:
+    path: models/model.joblib
+    type: model
+    desc: This is a heart failure classifier.
+    labels:
+    - cv
+    - classification
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
