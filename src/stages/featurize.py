@@ -36,12 +36,12 @@ def featurize(config_path: Text) -> None:
     categorical_features = config['featurize']['categorical_features']
 
     # Create a column transformer with one-hot encoding
-    preprocessor = ColumnTransformer(
-        transformers=[
-            ('cat', OneHotEncoder(), categorical_features)
-        ],
-        remainder='passthrough'
-    )
+    #preprocessor = ColumnTransformer(
+    #    transformers=[
+    #        ('cat', OneHotEncoder(), categorical_features)
+    #    ],
+    #    remainder='passthrough'
+    #)
 
     X_processed = X #preprocessor.fit_transform(X)
     # Convert processed X array into dataframe
