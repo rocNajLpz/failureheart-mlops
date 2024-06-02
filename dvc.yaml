@@ -62,16 +62,6 @@ stages:
         cache: false
 
 artifacts:
-  penguins_classifier:
-    path: models/model.joblib
-    type: model
-    desc: This is a penguins classifier.
-    labels:
-    - cv
-    - classification
-  penguins-demo-live:
-    path: models/model.joblib
-    type: model
   heartfailure_classifier:
     path: models/model.joblib
     type: model
@@ -79,7 +69,7 @@ artifacts:
     labels:
     - cv
     - classification
-  failureheart-mlops:
+  failureheart-mlops-demo-live:
     path: models/model.joblib
     type: model
 metrics:
