@@ -54,7 +54,7 @@ def evaluate_model(config_path: Text) -> None:
 
     os.makedirs(reports_folder, exist_ok=True)
     json.dump(
-        obj={'f1_score': report['f1']},
+        obj={'f1_score': report['f1'], 'cm':report['cm'], 'actual':report['actual'], 'predicted':report['predicted']},
         fp=open(metrics_path, 'w')
     )
 

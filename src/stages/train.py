@@ -52,7 +52,6 @@ def train_model(config_path: Text) -> None:
             name="heartfailure_classifier",
             desc="This is a heart failure classifier.",
             labels=["cv", "classification"]
-                    #, params.train.arch],
         )
 
 
