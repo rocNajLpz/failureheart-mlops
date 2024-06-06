@@ -102,8 +102,8 @@ stages:
       size: 10092
     - path: src/stages/train.py
       hash: md5
-      md5: 0c782e5e4ed9b906c0c6c814cad1beee
-      size: 1830
+      md5: 2b67bcbbd9823dc4cce356120749653e
+      size: 1786
     params:
       params.yaml:
         base:
@@ -144,8 +144,8 @@ stages:
     outs:
     - path: models/model.joblib
       hash: md5
-      md5: c1d01afb3ea6a511e4eb26fa48062681
-      size: 495833
+      md5: a5456cb3b0e6ebefa0f9f5904026a0c3
+      size: 494713
   evaluate:
     cmd: python -m src.stages.evaluate --config=params.yaml
     deps:
@@ -155,8 +155,8 @@ stages:
       size: 2635
     - path: models/model.joblib
       hash: md5
-      md5: c1d01afb3ea6a511e4eb26fa48062681
-      size: 495833
+      md5: a5456cb3b0e6ebefa0f9f5904026a0c3
+      size: 494713
     - path: src/stages/evaluate.py
       hash: md5
       md5: c85ba8be39ab4327a18ff65416a36896
@@ -175,5 +175,5 @@ stages:
     outs:
     - path: reports/metrics.json
       hash: md5
-      md5: ed12ba18cfe592cc1156b1250d5a72f1
+      md5: a991b52fd28720185d2c396482a3851f
       size: 32
